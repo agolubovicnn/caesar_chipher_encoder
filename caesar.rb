@@ -1,29 +1,32 @@
 class Caesar
 
-  attr_accessor :offset, :string
-
-  def initialize(rotation, string)
+  def initialize(rotation)
     @rotation = rotation
-    @string = string
+    @alphabet = ('a'..'z').to_a
   end
 
-  def caesar_cipher
-    encript = ""
-    alphabet = ('a'..'z').to_a
+  def caesar_cipher(string)
+    encrypt = ""
 
-    @string.each_codepoint do |letter|
+    string.each_codepoint do |letter|
       if letter >= 'a'.ord && letter <= 'z'.ord
-        encript << 'a'.ord + (letter - 'a'.ord + @rotation) % alphabet.length
+        encrypt << 'a'.ord + (letter - 'a'.ord + @rotation) % @alphabet.length
       elsif letter >= 'A'.ord && letter <= 'Z'.ord
-        encript << 'A'.ord + (letter - 'A'.ord + @rotation) % alphabet.length
+        encrypt << 'A'.ord + (letter - 'A'.ord + @rotation) % @alphabet.length
       else
-        encript << letter
+        encrypt << letter
       end
-
     end
-    return encript
+     encrypt
   end
 end
 
-cesar = Caesar.new(13, "The quick brown fox jumps over the lazy dog")
-puts cesar.caesar_cipher
+puts "Enter rotation number:"
+rotation = gets.to_i
+cesar = Caesar.new(rotation)
+
+puts "Enter input for encrypting:"
+string = gets.to_s
+
+puts "Your encrypted output is:"
+puts cesar.caesar_cipher(string)
