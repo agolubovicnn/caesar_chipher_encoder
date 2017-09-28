@@ -17,16 +17,6 @@ class Caesar
         encrypt << letter
       end
     end
-     encrypt
+    encrypt
   end
 end
-
-puts "Enter rotation number:"
-rotation = gets.to_i
-cesar = Caesar.new(rotation)
-
-puts "Enter input for encrypting:"
-string = gets.to_s
-
-puts "Your encrypted output is:"
-puts cesar.caesar_cipher(string)
